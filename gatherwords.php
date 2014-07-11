@@ -1,5 +1,7 @@
 <?php
 
+echo "scraping words...<br>";
+
 // This file downloads a wordlist to store locally to a comma separated text file 
 $words_file = "words.txt";
 $words = []; // empty words array
@@ -27,5 +29,7 @@ foreach ($wordlist as $item) {
     $word = strip_tags($htmlDOM->saveHTML($item)) . ','; // strip HTML tags
     file_put_contents($words_file, $word, FILE_APPEND);
 }
+
+echo "complete! look for output in words.txt and rerun index.php";
 
 ?>

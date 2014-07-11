@@ -2,6 +2,15 @@
 
 // words file (created by gatherwords.php)
 $words_filename = 'words.txt';
+
+
+// check first if words dictionary file exists, if not, have user run /gatherwords.php
+if (!file_exists($words_filename)) {
+    header("Location: /gatherwords.php");
+    exit;
+}
+
+// map words dictionary to words csv array
 $words_csv = array_map('str_getcsv', file($words_filename));
 
 // collapse silly created 2d array (from array_map function) to 1d array
@@ -35,7 +44,6 @@ if (!empty($_GET)) {
             $password_num_words = 20;
         }
     }
-
 
 
     if (isset($_GET["include_numbers"])) {
@@ -87,9 +95,6 @@ if (!empty($_GET)) {
     }
 
 }
-
-
-
 
 
 
