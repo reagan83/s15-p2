@@ -7,15 +7,6 @@ $words_csv = array_map('str_getcsv', file($words_filename));
 // collapse silly created 2d array (from array_map function) to 1d array
 $words_arr = $words_csv[0];
 
-//print_r($csv);
-$i = 0;
-foreach ($words_arr as $word) {
-    print ($word);
-    $i = $i + 1;
-    if ($i > 5) {
-        break;
-    }
-}
 
 // default form values
 $password_num_words = 4;
@@ -45,6 +36,8 @@ if (!empty($_GET)) {
         }
     }
 
+
+
     if (isset($_GET["include_numbers"])) {
         $password_include_numbers = $_GET["include_numbers"];
     }
@@ -57,8 +50,44 @@ if (!empty($_GET)) {
         $password_include_uppercase = $_GET["include_uppercase"];
     }
 
+    // let's generate ourselves a random password!
+    $random_password_keys = array_rand($words_arr, $password_num_words);
 
-    $generated_password = "octonauts!";
+    print_r($generated_password);
+
+    $i = 0;
+
+
+    // generating random special chars influenced by this SO thread:
+    // http://stackoverflow.com/questions/19017694/1line-php-random-string-generator
+    $special_chars = "!@#$%^&*()-=[];',./<>?:";
+
+    
+
+
+    foreach ($random_password_keys as $key) {
+        print ($words_arr[$key]);
+
+        // add a dash between each word
+        if (strlen($generated_password) > 0) {
+            $generated_password = $generated_password . "-";
+        }
+
+        // append word to password string
+        $generated_password = $generated_password . $words_arr[$key];
+
+        // append numbers if user has specified
+        if ($password_include_numbers == "on") {
+            $generated_password = $generated_password . rand(0, 9);
+        }
+
+        // include special chars if user has specified
+        if ($password_include_specialchars == "on") {
+            $generated_password = $generated_password . substr(str_shuffle($special_chars), 0, 1);
+        }
+
+
+    }
 
 }
 
@@ -107,14 +136,14 @@ if (!empty($_GET)) {
                 </div>
             </div>
             <div class="container">
-                <h1 style="font-size: 64px;">
+                <h1 style="font-size: 80px;">
                     <?php
                         echo ($generated_password != "" ? $generated_password : "");
                     ?>
                 </h1>
 
-            
-            <div class="row ">
+
+            <div class="row " style="margin-top: 25px;">
             <div class="col-md-3" style="float: none; margin: 0 auto;" role="main">
 
                 <form method="get" name="pwoptions" role="form">
