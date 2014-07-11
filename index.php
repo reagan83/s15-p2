@@ -23,6 +23,8 @@ $password_include_numbers = false;
 $password_include_specialchars = false;
 $password_include_uppercase = false;
 
+$generated_password = "";
+
 // form processing
 if (!empty($_GET)) {
     if (isset($_GET["num_words"])) {
@@ -55,6 +57,8 @@ if (!empty($_GET)) {
         $password_include_uppercase = $_GET["include_uppercase"];
     }
 
+
+    $generated_password = "octonauts!";
 
 }
 
@@ -103,6 +107,13 @@ if (!empty($_GET)) {
                 </div>
             </div>
             <div class="container">
+                <h1 style="font-size: 64px;">
+                    <?php
+                        echo ($generated_password != "" ? $generated_password : "");
+                    ?>
+                </h1>
+
+            
             <div class="row ">
             <div class="col-md-3" style="float: none; margin: 0 auto;" role="main">
 
