@@ -53,21 +53,13 @@ if (!empty($_GET)) {
     // let's generate ourselves a random password!
     $random_password_keys = array_rand($words_arr, $password_num_words);
 
-    print_r($generated_password);
-
     $i = 0;
-
 
     // generating random special chars influenced by this SO thread:
     // http://stackoverflow.com/questions/19017694/1line-php-random-string-generator
     $special_chars = "!@#$%^&*()-=[];',./<>?:";
 
-    
-
-
     foreach ($random_password_keys as $key) {
-        print ($words_arr[$key]);
-
         // add a dash between each word
         if (strlen($generated_password) > 0) {
             $generated_password = $generated_password . "-";
@@ -84,6 +76,11 @@ if (!empty($_GET)) {
         // include special chars if user has specified
         if ($password_include_specialchars == "on") {
             $generated_password = $generated_password . substr(str_shuffle($special_chars), 0, 1);
+        }
+
+        // upper case first letter of password if user has specified
+        if ($password_include_uppercase == "on") {
+            $generated_password = ucfirst($generated_password);
         }
 
 
@@ -136,7 +133,7 @@ if (!empty($_GET)) {
                 </div>
             </div>
             <div class="container">
-                <h1 style="font-size: 80px;">
+                <h1 style="font-size: 60px;">
                     <?php
                         echo ($generated_password != "" ? $generated_password : "");
                     ?>
