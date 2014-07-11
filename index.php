@@ -23,30 +23,37 @@ $password_include_numbers = false;
 $password_include_specialchars = false;
 $password_include_uppercase = false;
 
-$form_submitted = false;
-
+// form processing
 if (!empty($_GET)) {
-    echo "<br>submitted!<br>";
-    $form_submitted = true;
-}
+    if (isset($_GET["num_words"])) {
 
-if ($form_submitted == true) {
-    if ($_GET["num_words"] != null) {
-        $password_num_words = $_GET["num_words"];
-        echo "<br>num words:" . $password_num_words;
+        // extra credit steps, checking for numeric numbers and placing boundaries
+        if (is_numeric($_GET["num_words"]) == TRUE) {
+            $password_num_words = $_GET["num_words"];
+        }
+
+        // lower limit set to 4
+        if ($password_num_words < 4) {
+            $password_num_words = 4;
+        }
+
+        // upper limit set to 20
+        if ($password_num_words > 20) {
+            $password_num_words = 20;
+        }
     }
 
-    if ($_GET["include_numbers"] != null) {
+    if (isset($_GET["include_numbers"])) {
         $password_include_numbers = $_GET["include_numbers"];
         echo "<br>include_numbers:" . $password_include_numbers;
     }
 
-    if ($_GET["include_specialchars"] != null) {
+    if (isset($_GET["include_specialchars"])) {
         $password_include_specialchars = $_GET["include_specialchars"];
         echo "<br>include_specialchars:" . $password_include_specialchars;
     }
 
-    if ($_GET["include_uppercase"] != null) {
+    if (isset($_GET["include_uppercase"])) {
         $password_include_uppercase = $_GET["include_uppercase"];
         echo "<br>include_uppercase:" . $password_include_uppercase;
     }
@@ -101,25 +108,27 @@ if ($form_submitted == true) {
             <div class="container">
             <div class="row">
             <div class="col-md-3 col-md-offset-4" role="main">
+                <img src="http://imgs.xkcd.com/comics/password_strength.png" style="width: 150%;" alt="xkcd style passwords">
+
                 <form method="get" name="pwoptions" role="form">
 
                     <div class="form-group">
                         <label for="num_words">How many words in password?</label>
-                        <input type="text" class="form-control" name="num_words" value="4">
+                        <input type="text" class="form-control" name="num_words" value="<?php echo $password_num_words; ?>">
                     </div>
                     <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="include_numbers"> Include numbers?
+                          <input type="checkbox" name="include_numbers" <?php echo $password_include_numbers == "on" ? "checked" : ""; ?> > Include numbers?
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="include_specialchars"> Include special characters?
+                          <input type="checkbox" name="include_specialchars" <?php echo $password_include_specialchars == "on" ? "checked" : ""; ?> > Include special characters?
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="include_uppercase"> Upper case first letter of password?
+                          <input type="checkbox" name="include_uppercase" <?php echo $password_include_uppercase == "on" ? "checked" : ""; ?> > Upper case first letter of password?
                         </label>
                     </div>
 
