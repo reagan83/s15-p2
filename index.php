@@ -45,17 +45,14 @@ if (!empty($_GET)) {
 
     if (isset($_GET["include_numbers"])) {
         $password_include_numbers = $_GET["include_numbers"];
-        echo "<br>include_numbers:" . $password_include_numbers;
     }
 
     if (isset($_GET["include_specialchars"])) {
         $password_include_specialchars = $_GET["include_specialchars"];
-        echo "<br>include_specialchars:" . $password_include_specialchars;
     }
 
     if (isset($_GET["include_uppercase"])) {
         $password_include_uppercase = $_GET["include_uppercase"];
-        echo "<br>include_uppercase:" . $password_include_uppercase;
     }
 
 
@@ -101,14 +98,13 @@ if (!empty($_GET)) {
                             <img src="/images/reagan.williams.jpg" class="avatar-image avatar-image--large imagePicker-target" title="Reagan Williams" alt="Reagan Williams">
                         </span>
                     </div>
-                    <h1 class="cover-heading">Password Generator (P2)</h1>
-                    <p class="lead"></p>
+                    <h1 class="cover-heading">P2: Password Generator</h1>
+                    <p class="lead">Generate a random password based on your input below.</p>
                 </div>
             </div>
             <div class="container">
-            <div class="row">
-            <div class="col-md-3 col-md-offset-4" role="main">
-                <img src="http://imgs.xkcd.com/comics/password_strength.png" style="width: 150%;" alt="xkcd style passwords">
+            <div class="row ">
+            <div class="col-md-3" style="float: none; margin: 0 auto;" role="main">
 
                 <form method="get" name="pwoptions" role="form">
 
@@ -134,7 +130,10 @@ if (!empty($_GET)) {
 
                     <button type="submit" class="btn btn-success">Generate Password!</button>
                 </form>
+                <br>
 
+                <a href="http://xkcd.com/936/">xkcd password strength</a><br>
+                <img src="http://imgs.xkcd.com/comics/password_strength.png" style="width: 100%;" alt="xkcd style passwords">
             </div>
             </div>
 
