@@ -35,4 +35,4 @@ OLD URL:
 
 ## Plugins, libraries, packages, or outside code
 * Bootstrap (incl template inspired by Bootstrap's creator @mdo)
-* Words provided from http://www.paulnoll.com/Books/Clear-English/
+* Words provided from http://www.englishclub.com/vocabulary/common-words-5000.htm
