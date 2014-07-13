@@ -152,7 +152,7 @@ if (!empty($_GET)) {
 
                     <div class="form-group">
                         <label for="num_words">How many words in password?</label>
-                        <input type="text" class="form-control" name="num_words" value="<?php echo $password_num_words; ?>">
+                        <input type="text" class="form-control" id="num_words" name="num_words" value="<?php echo $password_num_words; ?>">
                     </div>
                     <div class="checkbox">
                         <label>
