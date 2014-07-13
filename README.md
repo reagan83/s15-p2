@@ -3,6 +3,10 @@
 ## Live URL
 <http://p2.reaganwilliams.net>
 
+or
+
+<http://rwilliams-p2.gopagoda.com/>
+
 ## Description
 This is project #2 for the DWA15 course at Harvard Summer School. This service is written in PHP and provides a simple interface to generate random passwords based on a user's criteria. The project is located on [GitHub](https://github.com/reagan83/s15-p2).
 
